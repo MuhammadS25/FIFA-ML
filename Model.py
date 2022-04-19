@@ -114,7 +114,7 @@ Y = data['value']
 # print(Y)
 
 # Split the data to training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.20, shuffle=True, random_state=10)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.20, shuffle=True, random_state=105)
 
 # X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size = 0.50,shuffle=True)
 
@@ -128,8 +128,7 @@ poly_model = linear_model.LinearRegression()
 poly_model.fit(X_train_poly, y_train)
 
 # predicting on training data-set
-y_train_predicted = poly_model.predict(X_train_poly)
-ypred = poly_model.predict(poly_features.transform(X_test))
+
 
 # predicting on test data-set
 prediction = poly_model.predict(poly_features.fit_transform(X_test))
@@ -142,3 +141,16 @@ true_player_value = np.asarray(y_test)[0]
 predicted_player_value = prediction[0]
 print('True value for the first player in the test set in millions is : ' + str(true_player_value))
 print('Predicted value for the first player in the test set in millions is : ' + str(predicted_player_value))
+
+
+model2 = linear_model.LinearRegression()
+model2.fit(X_train, y_train)
+
+# predicting on training data-set
+
+prediction2 = model2.predict(X_test)
+
+
+print('Mean Square Error', metrics.mean_squared_error(y_test, prediction2))
+
+
