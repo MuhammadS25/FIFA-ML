@@ -95,7 +95,7 @@ data['contract_end_year'] = data['contract_end_year'].astype(np.int64)
 # Get the correlation between the features
 corr = data.corr()
 # Top 50% Correlation training features with the Value
-top_feature = corr.index[abs(corr['value']) > 0.0]
+top_feature = corr.index[abs(corr['value']) > 0.8]
 top_corr = data[top_feature].corr()
 top_feature = top_feature.delete(-1)
 
@@ -118,7 +118,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.20, shuffl
 
 # X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size = 0.50,shuffle=True)
 
-poly_features = PolynomialFeatures(degree=3)
+poly_features = PolynomialFeatures(degree=9)
 
 # transforms the existing features to higher degree features.
 X_train_poly = poly_features.fit_transform(X_train)
