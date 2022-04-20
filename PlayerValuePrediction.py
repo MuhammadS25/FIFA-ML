@@ -13,9 +13,9 @@ import seaborn as sns
 
 # Load players data
 data = pd.read_csv('player-value-prediction.csv')
-# checking if data read correctly
+
 # Pre-processing
-##Droping near empty columns
+# Dropping near empty columns
 droped_columns = []
 maxMissingValues = 7000
 for column in data:
@@ -33,7 +33,7 @@ data[newColumns] = data['positions'].str.split(',', expand=True)
 # Replacing 'None' entries with 0's
 for col in newColumns:
     data[col].fillna(0, inplace=True)
-    ##Replacing nominal entries with 1's
+    # Replacing nominal entries with 1's
     data.loc[data[col] != 0, col] = 1
 
 # Merging the three tables values into position column and droping temporary columns
@@ -51,7 +51,6 @@ data.drop(columns=['value'], inplace=True, axis=1)
 data.insert(loc=len(data.columns), column='value', value=valueCol)
 
 # bodyType
-
 data['body_type'] = data['body_type'].replace(
     {"Stocky": 1, "Normal": 2, "Lean": 3, "Akinfenwa": 1, "Neymar": 3, "C. Ronaldo": 3, "PLAYER_BODY_TYPE_25": 3})
 
@@ -86,7 +85,6 @@ corr = data.corr()
 # Top 50% Correlation training features with the Value
 top_features = corr.index[abs(corr['value']) > 0.5]
 top_features = top_features.delete(-1)
-print(top_features)
 
 # Correlation Plotting
 plt.subplots(figsize=(12, 8))
@@ -116,7 +114,9 @@ poly_model = linear_model.LinearRegression()
 start = time.time()
 poly_model.fit(X_train_poly, y_train)
 end = time.time()
-print(f"Training time of polynomial Regression is: {end - start}")
+print("Polynomial Regression")
+print('----------------------------------------')
+print(f"Training time is: {end - start}")
 
 # predicting on test data-set
 prediction = poly_model.predict(poly_features.fit_transform(X_test))
@@ -127,22 +127,24 @@ for plot in X.columns:
 plt.xlabel('PlayerData', fontsize=20)
 plt.ylabel('Value', fontsize=20)
 plt.show()
+print('R2 =', metrics.r2_score(y_test, prediction)*100)
+print('Mean Square Error =', metrics.mean_squared_error(y_test, prediction))
 
-print('Mean Square Error for Polynomial Regression =', metrics.mean_squared_error(y_test, prediction))
-
-true_player_value = np.asarray(y_test)[0]
-predicted_player_value = prediction[0]
+true_player_value = np.asarray(y_test)[50]
+predicted_player_value = prediction[50]
 print('True value for the first player in the test set in millions is = ' + str(true_player_value))
 print('Predicted value for the first player in the test set in millions is = ' + str(predicted_player_value))
-
+print('===========================================================================')
 model2 = linear_model.LinearRegression()
 start = time.time()
 model2.fit(X_train, y_train)
 end = time.time()
-print(f"Training time of MultiVariable Regression is: {end - start}")
+print("MultiVariable Regression")
+print('----------------------------------------')
+print(f"Training time is: {end - start}")
 
 # predicting on training data-set
 prediction2 = model2.predict(X_test)
 
-print('Mean Square Error for MultiVariable Regression =', metrics.mean_squared_error(y_test, prediction2))
-#done
+print('Mean Square Error =', metrics.mean_squared_error(y_test, prediction2))
+print('R2 =', metrics.r2_score(y_test, prediction2)*100)
