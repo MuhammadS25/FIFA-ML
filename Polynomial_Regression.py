@@ -35,6 +35,6 @@ def PolynomialRegression(X_train, X_test, y_train, y_test, X, Y):
 
     true_player_value = np.asarray(y_test)[50]
     predicted_player_value = prediction[50]
-    print('True value for the first player in the test set in millions is = ' + str(true_player_value))
-    print('Predicted value for the first player in the test set in millions is = ' + str(predicted_player_value))
+    print('True value for the first player in the test set is ' + str(true_player_value))
+    print('Predicted value for the first player in the test set is ' + str(predicted_player_value))
     print('===========================================================================')
