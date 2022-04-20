@@ -3,6 +3,8 @@ from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import preprocessing
+
+
 def pre_processing(data):
     # Pre-processing
     # Dropping near empty columns
@@ -70,8 +72,8 @@ def pre_processing(data):
 
     return data
 
-def Correlation_Plotting(data):
 
+def Correlation_Plotting(data):
     # Get the correlation between the features
     corr = data.corr()
 
@@ -88,4 +90,4 @@ def Correlation_Plotting(data):
     # scaling all the features between 0 and 1 values --> [Normalization]
     min_max_scaler = preprocessing.MinMaxScaler()
     data[top_features] = min_max_scaler.fit_transform(data[top_features])
-    return data,top_features
+    return data, top_features
