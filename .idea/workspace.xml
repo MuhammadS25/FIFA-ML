@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fafc64ba-79e6-48a8-ae1b-f05329595643" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FIFA-ML.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FIFA-ML.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayerValuePrediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerValuePrediction.py" afterDir="false" />
     </list>
@@ -120,7 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650221622280</updated>
       <workItem from="1650398202925" duration="515000" />
-      <workItem from="1650491867062" duration="1458000" />
+      <workItem from="1650491867062" duration="3406000" />
     </task>
     <servers />
   </component>
@@ -139,6 +137,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PlayerValuePrediction_py$PlayerValuePrediction__1_.coverage" NAME="PlayerValuePrediction (1) Coverage Results" MODIFIED="1650493306290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PlayerValuePrediction_py$PlayerValuePrediction__1_.coverage" NAME="PlayerValuePrediction (1) Coverage Results" MODIFIED="1650495202036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
