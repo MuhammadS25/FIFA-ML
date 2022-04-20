@@ -1,8 +1,8 @@
 import numpy as np
-import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-
-
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn import preprocessing
 def pre_processing(data):
     # Pre-processing
     # Dropping near empty columns
@@ -69,3 +69,23 @@ def pre_processing(data):
     data['contract_end_year'] = data['contract_end_year'].astype(np.int64)
 
     return data
+
+def Correlation_Plotting(data):
+
+    # Get the correlation between the features
+    corr = data.corr()
+
+    # Top 50% Correlation training features with the Value
+    top_features = corr.index[abs(corr['value']) > 0.5]
+    top_features = top_features.delete(-1)
+
+    # Correlation Plotting
+    plt.subplots(figsize=(12, 8))
+    top_corr = data[top_features].corr()
+    sns.heatmap(top_corr, annot=True)
+    plt.show()
+
+    # scaling all the features between 0 and 1 values --> [Normalization]
+    min_max_scaler = preprocessing.MinMaxScaler()
+    data[top_features] = min_max_scaler.fit_transform(data[top_features])
+    return data,top_features

@@ -1,11 +1,9 @@
+import pandas as pd
 from sklearn import linear_model
 from sklearn import metrics
 import time
-import matplotlib.pyplot as plt
-from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
-import seaborn as sns
 from Preprocessing import *
 
 # Load players data
@@ -15,20 +13,9 @@ data = pd.read_csv('player-value-prediction.csv')
 data = pre_processing(data)
 
 # Get the correlation between the features
-corr = data.corr()
-# Top 50% Correlation training features with the Value
-top_features = corr.index[abs(corr['value']) > 0.5]
-top_features = top_features.delete(-1)
-
 # Correlation Plotting
-plt.subplots(figsize=(12, 8))
-top_corr = data[top_features].corr()
-sns.heatmap(top_corr, annot=True)
-plt.show()
 
-# scaling all the features between 0 and 1 values --> [Normalization]
-min_max_scaler = preprocessing.MinMaxScaler()
-data[top_features] = min_max_scaler.fit_transform(data[top_features])
+data, top_features = Correlation_Plotting(data)
 
 # Features
 X = data[top_features]
