@@ -6,6 +6,7 @@ from sklearn.preprocessing import PolynomialFeatures
 import matplotlib.pyplot as plt
 
 
+
 def PolynomialRegression(X_train, X_test, y_train, y_test, X, Y):
     poly_features = PolynomialFeatures(degree=3)
 
@@ -33,8 +34,8 @@ def PolynomialRegression(X_train, X_test, y_train, y_test, X, Y):
     print('R2 =', metrics.r2_score(y_test, prediction) * 100)
     print('Mean Square Error =', metrics.mean_squared_error(y_test, prediction))
 
-    true_player_value = np.asarray(y_test)[50]
-    predicted_player_value = prediction[50]
+    true_player_value = np.asarray(y_test)[0]
+    predicted_player_value = prediction[0]
     print('True value for the first player in the test set is ' + str(true_player_value))
     print('Predicted value for the first player in the test set is ' + str(predicted_player_value))
     print('===========================================================================')
