@@ -3,25 +3,23 @@ from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import preprocessing
+import pandas as pd
 
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
 
-def pre_processing(data):
+def pre_processing(data,predict_column):
     # Pre-processing
-    # Dropping near empty columns
-    droped_columns = []
-    maxMissingValues = 7000
-    for column in data:
-        if data[column].isna().sum() > maxMissingValues:
-            droped_columns.append(column)
-    data.drop(columns=droped_columns, inplace=True, axis=1)
-
-    # Droping rows with missing values
-    data.dropna(inplace=True, axis=0)
+    #Fill Missing Values
+    for column in data.columns:
+        if data.dtypes[column] == np.int64 or data.dtypes[column] == np.float64:
+            data[column] = data[column].replace(np.NaN, data[column].mean())
+        else:
+            data[column] = data[column].replace(np.NaN, data[column].mode()[0])
 
     # splitting position column into separate columns
     newColumns = ['w', 'x', 'y', 'z']
     data[newColumns] = data['positions'].str.split(',', expand=True)
-
     # Replacing 'None' entries with 0's
     for col in newColumns:
         data[col].fillna(0, inplace=True)
@@ -38,9 +36,9 @@ def pre_processing(data):
     data.drop(columns=['work_rate'], inplace=True, axis=1)
     data['Attacking Work Rate'] = data['Attacking Work Rate'].replace({"Low": 1, "Medium": 2, "High": 3})
     data['Defensive Work Rate'] = data['Defensive Work Rate'].replace({" Low": 1, " Medium": 2, " High": 3})
-    valueCol = data['value']
-    data.drop(columns=['value'], inplace=True, axis=1)
-    data.insert(loc=len(data.columns), column='value', value=valueCol)
+    valueCol = data[predict_column]
+    data.drop(columns=[predict_column], inplace=True, axis=1)
+    data.insert(loc=len(data.columns), column=predict_column, value=valueCol)
 
     # bodyType
     data['body_type'] = data['body_type'].replace(
@@ -48,10 +46,10 @@ def pre_processing(data):
 
     # Encoding Nationality , club_team , preferred_foot , club_position columns
     lbl = LabelEncoder()
-    lbl.fit_transform(list(data['nationality'].values))
-    lbl.fit_transform(list(data['club_team'].values))
-    lbl.fit_transform(list(data['preferred_foot'].values))
-    lbl.fit_transform(list(data['club_position'].values))
+    data['nationality'] = lbl.fit_transform(list(data['nationality'].values))
+    data['club_team'] = lbl.fit_transform(list(data['club_team'].values))
+    data['preferred_foot'] = lbl.fit_transform(list(data['preferred_foot'].values))
+    data['club_position'] = lbl.fit_transform(list(data['club_position'].values))
 
     # Handling +2 in columns
     index_LS = data.columns.get_loc("LS")
@@ -60,25 +58,24 @@ def pre_processing(data):
 
     for col in temp:
         temp[col] = temp[col].str[0:2]
-        temp[col] = temp[col].astype(np.int64)
+        temp[col] = temp[col].astype(np.float64)
 
     data.iloc[:, index_LS:index_RB + 1] = temp
 
     # using last 2 digits of year in club_join_date & contract_end_year
     data['club_join_date'] = data['club_join_date'].str[-2:]
-    data['club_join_date'] = data['club_join_date'].astype(np.int64)
+    data['club_join_date'] = data['club_join_date'].astype(np.float64)
     data['contract_end_year'] = data['contract_end_year'].str[-2:]
-    data['contract_end_year'] = data['contract_end_year'].astype(np.int64)
+    data['contract_end_year'] = data['contract_end_year'].astype(np.float64)
 
     return data
 
 
-def Correlation_Plotting(data):
-    # Get the correlation between the features
+def Correlation_Plotting(data,predict_column):
+    #Get the correlation between the features
     corr = data.corr()
-
     # Top 50% Correlation training features with the Value
-    top_features = corr.index[abs(corr['value']) > 0.5]
+    top_features = corr.index[abs(corr[predict_column]) > 0.5]
     top_features = top_features.delete(-1)
 
     # Correlation Plotting
