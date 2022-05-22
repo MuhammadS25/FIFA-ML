@@ -7,6 +7,6 @@ def LogisticRegressionModel(X_train, X_test, y_train, y_test):
     model = LogisticRegression(multi_class='multinomial', solver='saga')
     model.fit(X_train, y_train)
 
-    pred = model.predict(X_test)
-
-    print(np.mean(pred == y_test))
+    prediction = model.predict(X_test)
+    accuracy = np.mean(prediction == y_test)
+    print("Accuracy For LogisticRegression Model --> ", accuracy)

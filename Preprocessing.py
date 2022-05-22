@@ -1,3 +1,5 @@
+import re
+
 import numpy as np
 from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
@@ -26,7 +28,7 @@ def pre_processing(data,predict_column):
         # Replacing nominal entries with 1's
         data.loc[data[col] != 0, col] = 1
 
-    # Merging the three tables values into position column and droping temporary columns
+    # Merging the three tables values into position column and dropping temporary columns
     data['positions'] = data['w'] + data['x'] + data['y'] + data['z']
     data['positions'] = data['positions'].astype(np.int64)
     data.drop(columns=newColumns, inplace=True, axis=1)
@@ -42,7 +44,10 @@ def pre_processing(data,predict_column):
 
     # bodyType
     data['body_type'] = data['body_type'].replace(
-        {"Stocky": 1, "Normal": 2, "Lean": 3, "Akinfenwa": 1, "Neymar": 3, "C. Ronaldo": 3, "PLAYER_BODY_TYPE_25": 3})
+        {"Stocky": 1, "Normal": 2, "Lean": 3})
+
+    # For Strange Data
+    data['body_type'] = data['body_type'].replace(r'^[^123]', 2, regex=True)
 
     # Encoding Nationality , club_team , preferred_foot , club_position columns
     lbl = LabelEncoder()
