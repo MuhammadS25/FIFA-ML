@@ -64,7 +64,7 @@ def pre_processing(data,predict_column):
     data.iloc[:, index_LS:index_RB + 1] = temp
 
     # using last 2 digits of year in club_join_date & contract_end_year
-    data['club_join_date'] =data['club_join_date'].astype(np.str)
+    data['club_join_date'] = data['club_join_date'].astype(np.str)
     data['club_join_date'] = data['club_join_date'].str[-2:]
     data['club_join_date'] = data['club_join_date'].astype(np.float64)
     data['contract_end_year'] = data['contract_end_year'].astype(np.str)

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fafc64ba-79e6-48a8-ae1b-f05329595643" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Script.py" afterDir="false" />
+    <list default="true" id="fafc64ba-79e6-48a8-ae1b-f05329595643" name="Default Changelist" comment="SVM, DecisionTree Added">
       <change beforePath="$PROJECT_DIR$/.idea/FIFA-ML.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FIFA-ML.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classfication.py" beforeDir="false" afterPath="$PROJECT_DIR$/Classfication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DecisionTree.py" beforeDir="false" afterPath="$PROJECT_DIR$/DecisionTree.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogisticRegression.py" beforeDir="false" afterPath="$PROJECT_DIR$/LogisticRegression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MultiVariable_Regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/MultiVariable_Regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayerValuePrediction.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerValuePrediction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Polynomial_Regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/Polynomial_Regression.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Preprocessing.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SVM.py" beforeDir="false" afterPath="$PROJECT_DIR$/SVM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Script.py" beforeDir="false" afterPath="$PROJECT_DIR$/Script.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
       <recent name="C:\Users\mazen\Documents\FIFA-ML" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Script">
+  <component name="RunManager" selected="Python.Classfication">
     <configuration name="Classfication" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FIFA-ML" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -166,8 +164,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Script" />
         <item itemvalue="Python.Classfication" />
+        <item itemvalue="Python.Script" />
         <item itemvalue="Python.PlayerValuePrediction (1)" />
         <item itemvalue="Python.DecisionTree" />
         <item itemvalue="Python.SVM" />
@@ -200,6 +198,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
